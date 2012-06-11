@@ -19,4 +19,4 @@
 
 include_recipe "java"
 
-package "hadoop-doc"
+package "hadoop-0.20-doc"

@@ -19,10 +19,10 @@
 
 include_recipe "hadoop"
 
-package "hadoop-conf-pseudo"
+package "hadoop-0.20-conf-pseudo"
 
 %w{namenode secondarynamenode datanode jobtracker tasktracker}.each do |d|
-  service "hadoop-#{d}" do
+  service "hadoop-0.20-#{d}" do
     action [ :start, :enable ]
   end
 end

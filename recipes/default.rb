@@ -19,6 +19,12 @@
 
 include_recipe "java"
 
+package "curl"
+
+execute "curl -s http://archive.cloudera.com/debian/archive.key | apt-key add -" do
+  not_if "apt-key list | grep 'Cloudera Apt Repository'"
+end
+
 execute "apt-get update" do
   action :nothing
 end
@@ -30,9 +36,4 @@ template "/etc/apt/sources.list.d/cloudera.list" do
   notifies :run, resources("execute[apt-get update]"), :immediately
 end
 
-execute "curl -s http://archive.cloudera.com/debian/archive.key | apt-key add -" do
-  not_if "apt-key export 'Cloudera Apt Repository'"
-end
-
-package "hadoop"
-
+package "hadoop-0.20"
