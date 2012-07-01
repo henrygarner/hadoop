@@ -23,6 +23,7 @@ package "hadoop-0.20-conf-pseudo"
 
 %w{namenode secondarynamenode datanode jobtracker tasktracker}.each do |d|
   service "hadoop-0.20-#{d}" do
+    supports :status => true
     action [ :start, :enable ]
   end
 end
